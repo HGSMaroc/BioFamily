@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bio Family – المكسرات بالعسل</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Tajawal:wght@300;400;500;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --honey:#C8860A; --honey-light:#F5C842; --dark:#1A1208;
+    --cream:#FDF6E3; --brown:#5C3D11; --green:#3A6B35; --text:#2C1A0E;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Lato','Tajawal',sans-serif;background:var(--cream);color:var(--text);overflow-x:hidden;}
+
+  nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(26,18,8,.96);backdrop-filter:blur(12px);padding:14px 40px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid var(--honey);}
+  .nav-logo{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:900;color:var(--honey-light);}
+  .nav-logo span{color:#fff;font-size:.8rem;display:block;font-family:'Tajawal',sans-serif;font-weight:300;letter-spacing:2px;}
+  .nav-links{display:flex;gap:24px;align-items:center;}
+  .nav-links a{color:#e8d9b8;text-decoration:none;font-size:.88rem;font-family:'Tajawal',sans-serif;transition:color .2s;}
+  .nav-links a:hover{color:var(--honey-light);}
+  .nav-cart{background:var(--honey);color:#fff;border:none;border-radius:50px;padding:9px 22px;font-size:.9rem;cursor:pointer;font-family:'Tajawal',sans-serif;font-weight:700;position:relative;transition:background .2s;}
+  .nav-cart:hover{background:var(--honey-light);}
+  .cart-count{position:absolute;top:-7px;right:-7px;background:#e74c3c;color:#fff;border-radius:50%;width:20px;height:20px;font-size:.7rem;display:flex;align-items:center;justify-content:center;font-weight:700;}
+
+  .hero{min-height:100vh;background:linear-gradient(135deg,#1A1208 0%,#3A2106 50%,#1A1208 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 20px 60px;position:relative;overflow:hidden;}
+  .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(200,134,10,.25) 0%,transparent 65%),radial-gradient(ellipse at 70% 30%,rgba(245,200,66,.12) 0%,transparent 55%);}
+  .hero-badge{background:rgba(200,134,10,.18);border:1px solid var(--honey);color:var(--honey-light);padding:6px 20px;border-radius:50px;font-size:.82rem;letter-spacing:3px;text-transform:uppercase;font-family:'Tajawal',sans-serif;margin-bottom:28px;display:inline-block;position:relative;z-index:1;}
+  .hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.8rem,7vw,5.5rem);font-weight:900;color:#fff;line-height:1.1;margin-bottom:12px;position:relative;z-index:1;}
+  .hero h1 .gold{color:var(--honey-light);}
+  .hero-arabic{font-family:'Tajawal',sans-serif;font-size:clamp(1.4rem,4vw,2.4rem);color:var(--honey-light);margin-bottom:20px;position:relative;z-index:1;}
+  .hero-sub{font-size:1.05rem;color:#c4a97d;max-width:520px;line-height:1.7;position:relative;z-index:1;margin-bottom:36px;}
+  .hero-btns{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;position:relative;z-index:1;}
+  .btn-primary{background:linear-gradient(135deg,var(--honey),var(--honey-light));color:var(--dark);border:none;border-radius:50px;padding:14px 36px;font-size:1rem;font-weight:700;font-family:'Tajawal',sans-serif;cursor:pointer;transition:transform .2s,box-shadow .2s;box-shadow:0 4px 20px rgba(200,134,10,.45);}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(200,134,10,.6);}
+  .btn-secondary{background:transparent;border:2px solid var(--honey);color:var(--honey-light);border-radius:50px;padding:12px 32px;font-size:1rem;font-weight:600;font-family:'Tajawal',sans-serif;cursor:pointer;transition:background .2s,color .2s;}
+  .btn-secondary:hover{background:var(--honey);color:#fff;}
+  .hero-badges{margin-top:50px;display:flex;gap:30px;flex-wrap:wrap;justify-content:center;position:relative;z-index:1;}
+  .badge-item{display:flex;flex-direction:column;align-items:center;gap:6px;color:#c4a97d;font-size:.82rem;font-family:'Tajawal',sans-serif;text-align:center;}
+  .badge-icon{font-size:1.8rem;}
+
+  .section{padding:80px 20px;}
+  .section-title{text-align:center;margin-bottom:50px;}
+  .section-title h2{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;color:var(--dark);margin-bottom:10px;}
+  .section-title .arabic{font-family:'Tajawal',sans-serif;font-size:1.3rem;color:var(--honey);font-weight:700;}
+  .section-title p{color:#7a5c3a;margin-top:10px;font-size:.95rem;}
+  .divider{width:60px;height:3px;background:linear-gradient(to right,var(--honey),var(--honey-light));margin:14px auto 0;border-radius:2px;}
+
+  .products-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:30px;}
+  .product-card{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 4px 24px rgba(92,61,17,.1);transition:transform .3s,box-shadow .3s;}
+  .product-card:hover{transform:translateY(-6px);box-shadow:0 12px 40px rgba(200,134,10,.2);}
+  .product-gallery{position:relative;height:280px;overflow:hidden;background:#f5ece0;}
+  .gallery-imgs{display:flex;height:100%;transition:transform .5s ease;}
+  .gallery-imgs img{min-width:100%;height:100%;object-fit:cover;flex-shrink:0;}
+  .gallery-dots{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);display:flex;gap:6px;}
+  .dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.5);cursor:pointer;transition:background .2s;}
+  .dot.active{background:#fff;}
+  .gallery-nav{position:absolute;top:50%;transform:translateY(-50%);width:100%;display:flex;justify-content:space-between;padding:0 10px;}
+  .gallery-btn{background:rgba(0,0,0,.35);color:#fff;border:none;border-radius:50%;width:32px;height:32px;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;transition:background .2s;}
+  .gallery-btn:hover{background:rgba(200,134,10,.8);}
+  .product-badge{position:absolute;top:14px;right:14px;background:var(--honey);color:#fff;border-radius:50px;padding:4px 14px;font-size:.78rem;font-weight:700;font-family:'Tajawal',sans-serif;}
+  .product-info{padding:22px;}
+  .product-name{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:700;margin-bottom:4px;}
+  .product-name-ar{font-family:'Tajawal',sans-serif;font-size:1rem;color:var(--honey);font-weight:600;margin-bottom:10px;}
+  .product-desc{font-size:.88rem;color:#7a5c3a;line-height:1.6;margin-bottom:16px;}
+  .product-price-row{display:flex;align-items:center;justify-content:space-between;}
+  .product-price{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:900;color:var(--honey);}
+  .product-price span{font-size:.85rem;color:#999;font-family:'Lato',sans-serif;font-weight:400;}
+  .add-btn{background:var(--dark);color:var(--honey-light);border:none;border-radius:50px;padding:9px 20px;font-size:.88rem;font-family:'Tajawal',sans-serif;font-weight:700;cursor:pointer;transition:background .2s,transform .15s;}
+  .add-btn:hover{background:var(--honey);color:#fff;transform:scale(1.05);}
+  .size-select{width:100%;border:1.5px solid #e8d9b8;border-radius:10px;padding:8px 12px;font-family:'Tajawal',sans-serif;font-size:.9rem;color:var(--text);background:#fffdf5;margin-bottom:14px;cursor:pointer;outline:none;}
+  .size-select:focus{border-color:var(--honey);}
+
+  .gallery-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+  .gallery-item{border-radius:16px;overflow:hidden;box-shadow:0 4px 16px rgba(92,61,17,.12);cursor:pointer;position:relative;}
+  .gallery-item:first-child{grid-column:span 2;grid-row:span 2;}
+  .gallery-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s;}
+  .gallery-item:hover img{transform:scale(1.05);}
+  .gallery-item .overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(26,18,8,.7) 0%,transparent 60%);opacity:0;transition:opacity .3s;display:flex;align-items:flex-end;padding:20px;}
+  .gallery-item:hover .overlay{opacity:1;}
+  .overlay-text{color:#fff;font-family:'Tajawal',sans-serif;font-size:.9rem;font-weight:600;}
+
+  .features-grid{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:30px;}
+  .feature-card{text-align:center;padding:30px 20px;background:#fff;border-radius:20px;box-shadow:0 4px 20px rgba(92,61,17,.08);transition:transform .3s;}
+  .feature-card:hover{transform:translateY(-4px);}
+  .feature-icon{font-size:2.5rem;margin-bottom:14px;}
+  .feature-title{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;margin-bottom:6px;}
+  .feature-title-ar{font-family:'Tajawal',sans-serif;font-size:.9rem;color:var(--honey);font-weight:600;}
+  .feature-desc{font-size:.83rem;color:#7a5c3a;line-height:1.6;margin-top:8px;}
+
+  .reviews-grid{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:24px;}
+  .review-card{background:#fff;border-radius:18px;padding:26px;box-shadow:0 4px 20px rgba(92,61,17,.08);position:relative;}
+  .review-card::before{content:'"';position:absolute;top:14px;right:20px;font-size:4rem;color:var(--honey-light);opacity:.3;font-family:'Playfair Display',serif;line-height:1;}
+  .stars{color:var(--honey-light);font-size:1rem;margin-bottom:10px;}
+  .review-text{font-size:.9rem;line-height:1.7;color:#4a3520;font-family:'Tajawal',sans-serif;margin-bottom:14px;}
+  .review-author{font-size:.82rem;color:#999;font-family:'Tajawal',sans-serif;}
+  .review-author strong{color:var(--honey);}
+
+  .cart-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:2000;opacity:0;pointer-events:none;transition:opacity .3s;}
+  .cart-overlay.open{opacity:1;pointer-events:all;}
+  .cart-drawer{position:fixed;right:-420px;top:0;bottom:0;width:400px;max-width:95vw;background:#fff;z-index:2001;box-shadow:-4px 0 30px rgba(0,0,0,.2);transition:right .35s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;}
+  .cart-drawer.open{right:0;}
+  .cart-header{background:var(--dark);color:#fff;padding:20px 24px;display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid var(--honey);}
+  .cart-header h3{font-family:'Playfair Display',serif;font-size:1.2rem;}
+  .cart-close{background:none;border:none;color:#fff;font-size:1.5rem;cursor:pointer;}
+  .cart-items{flex:1;overflow-y:auto;padding:20px;}
+  .cart-empty{text-align:center;padding:40px 20px;color:#999;font-family:'Tajawal',sans-serif;}
+  .cart-item{display:flex;gap:14px;align-items:flex-start;padding:14px 0;border-bottom:1px solid #f0e8d8;}
+  .cart-item-img{width:65px;height:65px;object-fit:cover;border-radius:10px;}
+  .cart-item-info{flex:1;}
+  .cart-item-name{font-size:.92rem;font-weight:600;font-family:'Tajawal',sans-serif;}
+  .cart-item-price{font-size:.88rem;color:var(--honey);font-weight:700;margin-top:4px;}
+  .cart-item-size{font-size:.78rem;color:#999;}
+  .cart-item-remove{background:none;border:none;color:#e74c3c;cursor:pointer;font-size:1.1rem;}
+  .qty-control{display:flex;align-items:center;gap:8px;margin-top:6px;}
+  .qty-btn{background:#f0e8d8;border:none;width:26px;height:26px;border-radius:6px;cursor:pointer;font-size:1rem;font-weight:700;}
+  .qty-num{font-size:.9rem;font-weight:700;min-width:20px;text-align:center;}
+  .cart-footer{padding:20px 24px;border-top:2px solid #f0e8d8;}
+  .cart-total{display:flex;justify-content:space-between;margin-bottom:16px;font-weight:700;font-family:'Tajawal',sans-serif;font-size:1rem;}
+  .cart-total span:last-child{color:var(--honey);font-family:'Playfair Display',serif;font-size:1.2rem;}
+  .livraison-note{background:#f0faf0;border:1px solid #3A6B35;border-radius:10px;padding:10px 14px;font-size:.82rem;color:var(--green);font-family:'Tajawal',sans-serif;margin-bottom:14px;text-align:center;font-weight:600;}
+  .whatsapp-btn{width:100%;background:#25D366;color:#fff;border:none;border-radius:14px;padding:15px;font-size:1rem;font-weight:700;font-family:'Tajawal',sans-serif;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;transition:background .2s,transform .15s;}
+  .whatsapp-btn:hover{background:#1ebe5e;transform:scale(1.02);}
+
+  .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:3000;display:none;align-items:center;justify-content:center;padding:20px;}
+  .modal-overlay.open{display:flex;}
+  .modal{background:#fff;border-radius:24px;max-width:480px;width:100%;padding:36px;max-height:90vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.25);position:relative;}
+  .modal h3{font-family:'Playfair Display',serif;font-size:1.5rem;margin-bottom:6px;}
+  .modal-sub{font-family:'Tajawal',sans-serif;color:var(--honey);font-size:.95rem;margin-bottom:24px;font-weight:600;}
+  .form-group{margin-bottom:18px;}
+  .form-group label{display:block;font-size:.88rem;font-weight:600;color:var(--brown);margin-bottom:6px;font-family:'Tajawal',sans-serif;}
+  .form-group input,.form-group textarea,.form-group select{width:100%;border:1.5px solid #e0d0b8;border-radius:12px;padding:11px 14px;font-size:.92rem;color:var(--text);font-family:'Tajawal',sans-serif;outline:none;transition:border-color .2s;}
+  .form-group input:focus,.form-group textarea:focus{border-color:var(--honey);}
+  .form-group textarea{min-height:80px;resize:vertical;}
+  .order-summary{background:#fffdf5;border:1.5px solid #e8d9b8;border-radius:14px;padding:16px;margin-bottom:20px;}
+  .order-summary h4{font-size:.9rem;font-weight:700;margin-bottom:10px;font-family:'Tajawal',sans-serif;color:var(--brown);}
+  .order-summary-item{display:flex;justify-content:space-between;font-size:.87rem;padding:4px 0;font-family:'Tajawal',sans-serif;border-bottom:1px solid #f0e8d8;}
+  .order-summary-total{display:flex;justify-content:space-between;font-size:1rem;font-weight:700;padding-top:8px;font-family:'Tajawal',sans-serif;}
+  .confirm-btn{width:100%;background:#25D366;color:#fff;border:none;border-radius:14px;padding:15px;font-size:1rem;font-weight:700;font-family:'Tajawal',sans-serif;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;transition:background .2s;}
+  .confirm-btn:hover{background:#1ebe5e;}
+  .modal-close{position:absolute;top:16px;right:18px;background:none;border:none;font-size:1.5rem;cursor:pointer;color:#999;}
+
+  footer{background:var(--dark);color:#c4a97d;text-align:center;padding:40px 20px;font-family:'Tajawal',sans-serif;}
+  footer .footer-logo{font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--honey-light);margin-bottom:10px;}
+  footer p{font-size:.88rem;margin-top:8px;opacity:.7;}
+  footer .footer-contact{margin:16px 0;font-size:.92rem;}
+  footer .footer-contact a{color:var(--honey-light);text-decoration:none;}
+
+  .lightbox{position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:4000;display:none;align-items:center;justify-content:center;}
+  .lightbox.open{display:flex;}
+  .lightbox img{max-width:90vw;max-height:88vh;border-radius:12px;object-fit:contain;}
+  .lightbox-close{position:absolute;top:20px;right:26px;color:#fff;font-size:2rem;cursor:pointer;}
+
+  @media(max-width:700px){
+    nav{padding:12px 16px;}
+    .nav-links{display:none;}
+    .gallery-grid{grid-template-columns:1fr 1fr;}
+    .gallery-item:first-child{grid-column:span 2;height:200px;}
+    .cart-drawer{width:100%;right:-100%;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Bio Family<span>مكسرات طبيعية · Produits Naturels</span></div>
+  <div class="nav-links">
+    <a href="#products">Produits / منتجاتنا</a>
+    <a href="#gallery">Galerie</a>
+    <a href="#features">Pourquoi nous</a>
+    <a href="#reviews">Avis</a>
+  </div>
+  <button class="nav-cart" onclick="openCart()">🛒 Panier <span class="cart-count" id="cartCount">0</span></button>
+</nav>
+
+<section class="hero">
+  <div class="hero-badge">🍯 100% Naturel · طبيعي 100%</div>
+  <h1>Bio <span class="gold">Family</span></h1>
+  <div class="hero-arabic">المكسرات بالعسل الطبيعي</div>
+  <p class="hero-sub">Mélange premium de noix &amp; miel naturel artisanal. Livraison à domicile dans tout le Maroc.</p>
+  <div class="hero-btns">
+    <button class="btn-primary" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">Commander maintenant 🛒</button>
+    <button class="btn-secondary" onclick="document.getElementById('gallery').scrollIntoView({behavior:'smooth'})">Voir la galerie 📸</button>
+  </div>
+  <div class="hero-badges">
+    <div class="badge-item"><span class="badge-icon">🐝</span>Miel pur<br>عسل طبيعي</div>
+    <div class="badge-item"><span class="badge-icon">🌿</span>Bio &amp; Naturel<br>عضوي</div>
+    <div class="badge-item"><span class="badge-icon">🚚</span>Livraison gratuite<br>توصيل مجاني</div>
+    <div class="badge-item"><span class="badge-icon">💳</span>Paiement à la livraison<br>الدفع عند الاستلام</div>
+  </div>
+</section>
+
+<section class="section" id="features">
+  <div class="section-title">
+    <h2>Pourquoi choisir Bio Family?</h2>
+    <div class="arabic">لماذا تختار Bio Family؟</div>
+    <div class="divider"></div>
+  </div>
+  <div class="features-grid">
+    <div class="feature-card"><div class="feature-icon">🐝</div><div class="feature-title">Miel 100% Naturel</div><div class="feature-title-ar">عسل طبيعي 100%</div><div class="feature-desc">Miel artisanal non chauffé, récolté directement des ruches marocaines.</div></div>
+    <div class="feature-card"><div class="feature-icon">🌰</div><div class="feature-title">Noix Premium</div><div class="feature-title-ar">مكسرات فاخرة</div><div class="feature-desc">Amandes, noix, cajous, pistaches – triés à la main pour la meilleure qualité.</div></div>
+    <div class="feature-card"><div class="feature-icon">🚚</div><div class="feature-title">Livraison Gratuite</div><div class="feature-title-ar">توصيل مجاني</div><div class="feature-desc">Livraison offerte partout au Maroc. Payez uniquement à la réception.</div></div>
+    <div class="feature-card"><div class="feature-icon">📦</div><div class="feature-title">Emballage Hygiénique</div><div class="feature-title-ar">تعبئة صحية</div><div class="feature-desc">Bocaux en verre hermétiques garantissant fraîcheur et conservation optimale.</div></div>
+  </div>
+</section>
+
+<section class="section" id="products" style="background:#fff;">
+  <div class="section-title">
+    <h2>Nos Produits</h2>
+    <div class="arabic">منتجاتنا</div>
+    <div class="divider"></div>
+    <p>Fait avec amour · صنع بحب</p>
+  </div>
+  <div class="products-grid">
+    <div class="product-card">
+      <div class="product-gallery">
+        <div class="gallery-imgs" id="imgs1">
+          <img src="WhatsApp_Image_2026-04-06_at_18_23_11.jpeg" alt="Mélange noix miel">
+          <img src="WhatsApp_Image_2026-04-06_at_18_23_11__1_.jpeg" alt="Mélange noix miel 2">
+          <img src="WhatsApp_Image_2026-04-06_at_18_24_01.jpeg" alt="Mélange noix miel 3">
+        </div>
+        <div class="gallery-nav">
+          <button class="gallery-btn" onclick="prevSlide(1)">&#8249;</button>
+          <button class="gallery-btn" onclick="nextSlide(1)">&#8250;</button>
+        </div>
+        <div class="gallery-dots" id="dots1">
+          <div class="dot active" onclick="goSlide(1,0)"></div>
+          <div class="dot" onclick="goSlide(1,1)"></div>
+          <div class="dot" onclick="goSlide(1,2)"></div>
+        </div>
+        <div class="product-badge">⭐ Best-seller</div>
+      </div>
+      <div class="product-info">
+        <div class="product-name">Mélange de Noix au Miel</div>
+        <div class="product-name-ar">المكسرات بالعسل</div>
+        <div class="product-desc">Amandes, cajous, noix, pistaches, graines de courge et tournesol, baies de goji – noyés dans du miel pur artisanal.</div>
+        <select class="size-select" id="size1" onchange="updatePrice('size1','price1')">
+          <option value="250g|50">250g – 50 MAD</option>
+          <option value="500g|90">500g – 90 MAD</option>
+          <option value="1kg|160" selected>1 kg – 160 MAD</option>
+        </select>
+        <div class="product-price-row">
+          <div class="product-price" id="price1">160 <span>MAD</span></div>
+          <button class="add-btn" onclick="addToCart('Mélange de Noix au Miel','المكسرات بالعسل','WhatsApp_Image_2026-04-06_at_18_23_11.jpeg','size1','price1')">Ajouter 🛒</button>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</section>
+
+<section class="section" id="gallery" style="background:#f7efe0;">
+  <div class="section-title">
+    <h2>Notre Galerie</h2>
+    <div class="arabic">معرض صورنا</div>
+    <div class="divider"></div>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-item" onclick="openLightbox('WhatsApp_Image_2026-04-06_at_18_23_11.jpeg')">
+      <img src="WhatsApp_Image_2026-04-06_at_18_23_11.jpeg" alt="Bocaux noix miel" style="height:400px;">
+      <div class="overlay"><span class="overlay-text">🍯 Bocaux Noix &amp; Miel</span></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('WhatsApp_Image_2026-04-06_at_18_23_11__1_.jpeg')">
+      <img src="WhatsApp_Image_2026-04-06_at_18_23_11__1_.jpeg" alt="Noix miel 2" style="height:190px;">
+      <div class="overlay"><span class="overlay-text">المكسرات بالعسل</span></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('WhatsApp_Image_2026-04-06_at_18_24_01.jpeg')">
+      <img src="WhatsApp_Image_2026-04-06_at_18_24_01.jpeg" alt="Premium bocaux" style="height:190px;">
+      <div class="overlay"><span class="overlay-text">✨ Premium Quality</span></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('WhatsApp_Image_2026-04-06_at_18_23_12.jpeg')">
+      <img src="WhatsApp_Image_2026-04-06_at_18_23_12.jpeg" alt="Mélange noix miel" style="height:200px;">
+      <div class="overlay"><span class="overlay-text">🍯 Mélange Noix &amp; Miel</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="reviews">
+  <div class="section-title">
+    <h2>Avis Clients</h2>
+    <div class="arabic">آراء زبنائنا</div>
+    <div class="divider"></div>
+    <p>Ce que disent nos clients · ما يقوله زبناؤنا</p>
+  </div>
+  <div class="reviews-grid">
+
+    <div class="review-card">
+      <div class="review-lang-badge" style="background:#fff3cd;color:#856404;font-size:.72rem;font-family:'Tajawal',sans-serif;padding:3px 10px;border-radius:20px;display:inline-block;margin-bottom:10px;font-weight:700;">🇲🇦 Darija</div>
+      <div class="stars">★★★★★</div>
+      <div class="review-text">واللاه شريت جرة ديال كيلو وما صدقتش كيفاش خلصات بسرعة! العسل طبيعي بزاف والمكسرات طازة. غير باقي نجدد الطلبية، مرحبا بكم! 😍</div>
+      <div class="review-author"><strong>Fatima B.</strong> – Casablanca</div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-lang-badge" style="background:#d4edda;color:#155724;font-size:.72rem;font-family:'Tajawal',sans-serif;padding:3px 10px;border-radius:20px;display:inline-block;margin-bottom:10px;font-weight:700;">🇫🇷 Français</div>
+      <div class="stars">★★★★★</div>
+      <div class="review-text">Un produit exceptionnel ! Le mélange de noix au miel est généreux, le miel est pur et savoureux. Livraison rapide et emballage très soigné. Je recommande à 100% !</div>
+      <div class="review-author"><strong>Karim M.</strong> – Rabat</div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-lang-badge" style="background:#fff3cd;color:#856404;font-size:.72rem;font-family:'Tajawal',sans-serif;padding:3px 10px;border-radius:20px;display:inline-block;margin-bottom:10px;font-weight:700;">🇲🇦 Darija</div>
+      <div class="stars">★★★★★</div>
+      <div class="review-text">أحسن هدية ديريها لحبابك! جبت للعيلة كاملة وكلهم عجبهم. العسل حقيقي مو مغشوش، والمكسرات متنوعة بزاف. التوصيل وصل من غدا! 🙏</div>
+      <div class="review-author"><strong>Youssef A.</strong> – Fès</div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-lang-badge" style="background:#d4edda;color:#155724;font-size:.72rem;font-family:'Tajawal',sans-serif;padding:3px 10px;border-radius:20px;display:inline-block;margin-bottom:10px;font-weight:700;">🇫🇷 Français</div>
+      <div class="stars">★★★★★</div>
+      <div class="review-text">J'achète pour toute la famille depuis 3 mois. La qualité est constante, le miel est authentique et les noix bien remplies. Le paiement à la livraison c'est top !</div>
+      <div class="review-author"><strong>Samira L.</strong> – Agadir</div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-lang-badge" style="background:#fff3cd;color:#856404;font-size:.72rem;font-family:'Tajawal',sans-serif;padding:3px 10px;border-radius:20px;display:inline-block;margin-bottom:10px;font-weight:700;">🇲🇦 Darija</div>
+      <div class="stars">★★★★★</div>
+      <div class="review-text">والله ما توقعتش يكون هكذا مزيان! ربطمان كامل ديال المكسرات بالعسل، كل واحد جرب قالي هاد الشي سحر 😂 غير باقي نطلب زوج!</div>
+      <div class="review-author"><strong>Hassan O.</strong> – Tanger</div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">Bio Family 🍯</div>
+  <div class="footer-contact">📞 <a href="tel:0628282127">0628 28 21 27</a> &nbsp;|&nbsp; 💬 <a href="https://wa.me/212628282127" target="_blank">WhatsApp</a></div>
+  <p>🚚 Livraison gratuite partout au Maroc · الدفع عند الاستلام</p>
+  <p style="margin-top:16px;">© 2026 Bio Family – Tous droits réservés</p>
+</footer>
+
+<!-- CART DRAWER -->
+<div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-header">
+    <h3>🛒 Mon Panier · سلة التسوق</h3>
+    <button class="cart-close" onclick="closeCart()">✕</button>
+  </div>
+  <div class="cart-items" id="cartItems"><div class="cart-empty">Votre panier est vide<br><small>سلتك فارغة</small></div></div>
+  <div class="cart-footer" id="cartFooter" style="display:none;">
+    <div class="livraison-note">🚚 Livraison GRATUITE · توصيل مجاني<br>💳 Paiement à la livraison · الدفع عند الاستلام</div>
+    <div class="cart-total"><span>Total</span><span id="cartTotal">0 MAD</span></div>
+    <button class="whatsapp-btn" onclick="openOrderForm()">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+      Commander via WhatsApp
+    </button>
+  </div>
+</div>
+
+<!-- ORDER MODAL -->
+<div class="modal-overlay" id="orderModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeOrderForm()">✕</button>
+    <h3>Confirmer la commande</h3>
+    <div class="modal-sub">تأكيد الطلبية</div>
+    <div class="order-summary" id="orderSummaryDisplay"></div>
+    <div class="form-group"><label>Nom complet · الاسم الكامل *</label><input type="text" id="fname" placeholder="Votre nom / اسمك"></div>
+    <div class="form-group"><label>Téléphone · رقم الهاتف *</label><input type="tel" id="fphone" placeholder="06XXXXXXXX"></div>
+    <div class="form-group"><label>Ville · المدينة *</label><input type="text" id="fcity" placeholder="Casablanca, Rabat..."></div>
+    <div class="form-group"><label>Adresse · العنوان *</label><textarea id="faddress" placeholder="Adresse de livraison / عنوان التوصيل"></textarea></div>
+    <div class="form-group"><label>Notes · ملاحظات</label><textarea id="fnotes" placeholder="Instructions spéciales..."></textarea></div>
+    <button class="confirm-btn" onclick="sendWhatsApp()">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+      Envoyer sur WhatsApp · إرسال الطلبية
+    </button>
+  </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <span class="lightbox-close">✕</span>
+  <img id="lightboxImg" src="" alt="">
+</div>
+
+<script>
+const slides={1:0},counts={1:3};
+function updateSlide(id){
+  document.getElementById('imgs'+id).style.transform='translateX(-'+(slides[id]*100)+'%)';
+  document.querySelectorAll('#dots'+id+' .dot').forEach((d,i)=>d.classList.toggle('active',i===slides[id]));
+}
+function nextSlide(id){slides[id]=(slides[id]+1)%counts[id];updateSlide(id);}
+function prevSlide(id){slides[id]=(slides[id]-1+counts[id])%counts[id];updateSlide(id);}
+function goSlide(id,i){slides[id]=i;updateSlide(id);}
+setInterval(()=>nextSlide(1),3500);
+
+function updatePrice(sizeId,priceId){
+  const v=document.getElementById(sizeId).value.split('|')[1];
+  document.getElementById(priceId).innerHTML=v+' <span>MAD</span>';
+}
+
+let cart=[];
+function addToCart(name,nameAr,img,sizeId,priceId){
+  const sizeEl=document.getElementById(sizeId);
+  const [size,priceStr]=sizeEl.value.split('|');
+  const price=parseInt(priceStr);
+  const key=name+'|'+size;
+  const ex=cart.find(i=>i.key===key);
+  if(ex){ex.qty++;}else{cart.push({key,name,nameAr,img,size,price,qty:1});}
+  renderCart();openCart();
+}
+function removeFromCart(key){cart=cart.filter(i=>i.key!==key);renderCart();}
+function changeQty(key,d){
+  const item=cart.find(i=>i.key===key);
+  if(!item)return;
+  item.qty+=d;
+  if(item.qty<=0)removeFromCart(key);else renderCart();
+}
+function getTotal(){return cart.reduce((s,i)=>s+i.price*i.qty,0);}
+function renderCart(){
+  const count=cart.reduce((s,i)=>s+i.qty,0);
+  document.getElementById('cartCount').textContent=count;
+  const el=document.getElementById('cartItems');
+  const footer=document.getElementById('cartFooter');
+  if(!cart.length){el.innerHTML='<div class="cart-empty">Votre panier est vide<br><small>سلتك فارغة</small></div>';footer.style.display='none';return;}
+  footer.style.display='block';
+  el.innerHTML=cart.map(i=>`<div class="cart-item"><img class="cart-item-img" src="${i.img}" alt="${i.name}"><div class="cart-item-info"><div class="cart-item-name">${i.name}</div><div class="cart-item-size">${i.nameAr} – ${i.size}</div><div class="cart-item-price">${i.price} MAD</div><div class="qty-control"><button class="qty-btn" onclick="changeQty('${i.key}',-1)">−</button><span class="qty-num">${i.qty}</span><button class="qty-btn" onclick="changeQty('${i.key}',1)">+</button></div></div><button class="cart-item-remove" onclick="removeFromCart('${i.key}')">🗑</button></div>`).join('');
+  document.getElementById('cartTotal').textContent=getTotal()+' MAD';
+}
+function openCart(){document.getElementById('cartDrawer').classList.add('open');document.getElementById('cartOverlay').classList.add('open');}
+function closeCart(){document.getElementById('cartDrawer').classList.remove('open');document.getElementById('cartOverlay').classList.remove('open');}
+
+function openOrderForm(){
+  closeCart();
+  if(!cart.length){alert('Votre panier est vide!');return;}
+  const items=cart.map(i=>`<div class="order-summary-item"><span>${i.name} (${i.size}) x${i.qty}</span><span>${i.price*i.qty} MAD</span></div>`).join('');
+  document.getElementById('orderSummaryDisplay').innerHTML=`<h4>Récapitulatif</h4>${items}<div class="order-summary-total"><span>Total</span><span>${getTotal()} MAD</span></div><div style="color:#3A6B35;font-size:.8rem;margin-top:8px;font-family:Tajawal">🚚 Livraison gratuite · الدفع عند الاستلام</div>`;
+  document.getElementById('orderModal').classList.add('open');
+}
+function closeOrderForm(){document.getElementById('orderModal').classList.remove('open');}
+
+function sendWhatsApp(){
+  const name=document.getElementById('fname').value.trim();
+  const phone=document.getElementById('fphone').value.trim();
+  const city=document.getElementById('fcity').value.trim();
+  const address=document.getElementById('faddress').value.trim();
+  const notes=document.getElementById('fnotes').value.trim();
+  if(!name||!phone||!city||!address){alert('Veuillez remplir tous les champs obligatoires *');return;}
+  let msg='🛒 *Nouvelle Commande – Bio Family*\n\n';
+  msg+='👤 *Client:* '+name+'\n📞 *Tél:* '+phone+'\n📍 *Ville:* '+city+'\n🏠 *Adresse:* '+address+'\n\n*Produits:*\n';
+  cart.forEach(i=>{msg+=`• ${i.name} (${i.nameAr}) – ${i.size} x${i.qty} = ${i.price*i.qty} MAD\n`;});
+  msg+='\n💰 *Total: '+getTotal()+' MAD*\n🚚 *Livraison GRATUITE · الدفع عند الاستلام*';
+  if(notes)msg+='\n\n📝 Notes: '+notes;
+  window.open('https://wa.me/212628282127?text='+encodeURIComponent(msg),'_blank');
+  closeOrderForm();cart=[];renderCart();
+  alert('✅ Commande envoyée! شكرا لطلبيتكم!');
+}
+
+function openLightbox(src){document.getElementById('lightboxImg').src=src;document.getElementById('lightbox').classList.add('open');}
+function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
+</script>
+</body>
+</html>
