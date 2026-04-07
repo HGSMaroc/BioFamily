@@ -50,9 +50,9 @@
   .products-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:30px;}
   .product-card{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 4px 24px rgba(92,61,17,.1);transition:transform .3s,box-shadow .3s;}
   .product-card:hover{transform:translateY(-6px);box-shadow:0 12px 40px rgba(200,134,10,.2);}
-  .product-gallery{position:relative;height:280px;overflow:hidden;background:#f5ece0;}
-  .gallery-imgs{display:flex;height:100%;transition:transform .5s ease;}
-  .gallery-imgs img{min-width:100%;height:100%;object-fit:cover;flex-shrink:0;}
+  .product-gallery{position:relative;overflow:hidden;background:#f5ece0;}
+  .gallery-imgs{display:flex;transition:transform .5s ease;}
+  .gallery-imgs img{min-width:100%;width:100%;height:auto;object-fit:contain;flex-shrink:0;display:block;}
   .gallery-dots{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);display:flex;gap:6px;}
   .dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.5);cursor:pointer;transition:background .2s;}
   .dot.active{background:#fff;}
@@ -76,10 +76,12 @@
   .gallery-item{border-radius:16px;overflow:hidden;box-shadow:0 4px 16px rgba(92,61,17,.12);cursor:pointer;position:relative;}
   .gallery-item:first-child{grid-column:span 2;grid-row:span 2;}
   .gallery-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s;}
+  .gallery-item video{width:100%;height:100%;object-fit:cover;display:block;}
   .gallery-item:hover img{transform:scale(1.05);}
   .gallery-item .overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(26,18,8,.7) 0%,transparent 60%);opacity:0;transition:opacity .3s;display:flex;align-items:flex-end;padding:20px;}
   .gallery-item:hover .overlay{opacity:1;}
   .overlay-text{color:#fff;font-family:'Tajawal',sans-serif;font-size:.9rem;font-weight:600;}
+  .video-play-icon{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:3rem;opacity:.85;pointer-events:none;}
 
   .features-grid{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:30px;}
   .feature-card{text-align:center;padding:30px 20px;background:#fff;border-radius:20px;box-shadow:0 4px 20px rgba(92,61,17,.08);transition:transform .3s;}
@@ -216,9 +218,9 @@
     <div class="product-card">
       <div class="product-gallery">
         <div class="gallery-imgs" id="imgs1">
-          <img src="WhatsApp3.jpeg" alt="Mélange noix miel">
-          <img src="WhatsApp2.jpeg" alt="Mélange noix miel 2">
-          <img src="WhatsApp4.jpeg" alt="Mélange noix miel 3">
+          <img src="WhatsApp2.jpeg" alt="Mélange noix miel">
+          <img src="WhatsApp4.jpeg" alt="Mélange noix miel 2">
+          <img src="WhatsApp3.jpeg" alt="Mélange noix miel 3">
         </div>
         <div class="gallery-nav">
           <button class="gallery-btn" onclick="prevSlide(1)">&#8249;</button>
@@ -259,11 +261,11 @@
   </div>
   <div class="gallery-grid">
     <div class="gallery-item" onclick="openLightbox('WhatsApp_Image_2026-04-06_at_18_23_11.jpeg')">
-      <img src="WhatsApp2.jpeg" alt="Bocaux noix miel" style="height:400px;">
+      <img src="WhatsApp1.jpeg" alt="Bocaux noix miel" style="height:400px;">
       <div class="overlay"><span class="overlay-text">🍯 Bocaux Noix &amp; Miel</span></div>
     </div>
     <div class="gallery-item" onclick="openLightbox('WhatsApp_Image_2026-04-06_at_18_23_11__1_.jpeg')">
-      <img src="WhatsApp4.jpeg" alt="Noix miel 2" style="height:190px;">
+      <img src="WhatsApp2.jpeg" alt="Noix miel 2" style="height:190px;">
       <div class="overlay"><span class="overlay-text">المكسرات بالعسل</span></div>
     </div>
     <div class="gallery-item" onclick="openLightbox('WhatsApp_Image_2026-04-06_at_18_24_01.jpeg')">
@@ -271,8 +273,13 @@
       <div class="overlay"><span class="overlay-text">✨ Premium Quality</span></div>
     </div>
     <div class="gallery-item" onclick="openLightbox('WhatsApp_Image_2026-04-06_at_18_23_12.jpeg')">
-      <img src="WhatsApp1" alt="Mélange noix miel" style="height:200px;">
+      <img src="WhatsApp4.jpeg" alt="Mélange noix miel" style="height:200px;">
       <div class="overlay"><span class="overlay-text">🍯 Mélange Noix &amp; Miel</span></div>
+    </div>
+    <div class="gallery-item" style="cursor:default;" onclick="this.querySelector('video').paused?this.querySelector('video').play():this.querySelector('video').pause()">
+      <video src="Video.mp4" style="height:200px;" loop playsinline preload="metadata"></video>
+      <div class="video-play-icon">▶️</div>
+      <div class="overlay"><span class="overlay-text">🎬 Vidéo – المنتج في الواقع</span></div>
     </div>
   </div>
 </section>
@@ -289,7 +296,7 @@
     <div class="review-card">
       <div class="review-lang-badge" style="background:#fff3cd;color:#856404;font-size:.72rem;font-family:'Tajawal',sans-serif;padding:3px 10px;border-radius:20px;display:inline-block;margin-bottom:10px;font-weight:700;">🇲🇦 Darija</div>
       <div class="stars">★★★★★</div>
-      <div class="review-text">واللاه شريت جرة ديال كيلو وما صدقتش كيفاش خلصات بسرعة! العسل طبيعي بزاف والمكسرات طازة. غير باقي نجدد الطلبية، مرحبا بكم! 😍</div>
+      <div class="review-text">والله شريت قرعة ديال كيلو وما صدقتش كيفاش سالات بزربة! العسل طبيعي بزاف والمكسرات طازجة. 😍</div>
       <div class="review-author"><strong>Fatima B.</strong> – Casablanca</div>
     </div>
 
@@ -303,7 +310,7 @@
     <div class="review-card">
       <div class="review-lang-badge" style="background:#fff3cd;color:#856404;font-size:.72rem;font-family:'Tajawal',sans-serif;padding:3px 10px;border-radius:20px;display:inline-block;margin-bottom:10px;font-weight:700;">🇲🇦 Darija</div>
       <div class="stars">★★★★★</div>
-      <div class="review-text">أحسن هدية ديريها لحبابك! جبت للعيلة كاملة وكلهم عجبهم. العسل حقيقي مو مغشوش، والمكسرات متنوعة بزاف. التوصيل وصل من غدا! 🙏</div>
+      <div class="review-text">أحسن هدية ديريها لحبابك! جبت للعائلة كاملة وكلهم عجبهم. العسل حقيقي ماشي مغشوش، والمكسرات متنوعة بزاف. 🙏</div>
       <div class="review-author"><strong>Youssef A.</strong> – Fès</div>
     </div>
 
@@ -317,7 +324,7 @@
     <div class="review-card">
       <div class="review-lang-badge" style="background:#fff3cd;color:#856404;font-size:.72rem;font-family:'Tajawal',sans-serif;padding:3px 10px;border-radius:20px;display:inline-block;margin-bottom:10px;font-weight:700;">🇲🇦 Darija</div>
       <div class="stars">★★★★★</div>
-      <div class="review-text">والله ما توقعتش يكون هكذا مزيان! ربطمان كامل ديال المكسرات بالعسل، كل واحد جرب قالي هاد الشي سحر 😂 غير باقي نطلب زوج!</div>
+      <div class="review-text">والله ما توقعتش يكون هكذا مزيان! قرعة كامل ديال المكسرات بالعسل، كل واحد جرب قالي هاد الشي راه دواء 😂</div>
       <div class="review-author"><strong>Hassan O.</strong> – Tanger</div>
     </div>
 
